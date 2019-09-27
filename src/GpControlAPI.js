@@ -3,16 +3,15 @@ import mac from 'mac-address'
 import constants from './GpControlValues'
 import { prefixedStr, valueFinder } from './utils'
 import { PromiseError, NotFoundError } from './errors'
+import { Buffer} from 'buffer'
 
 const EMPTY = 'empty'
 const RETRIES = 10
 const RETRY_DELAY = 200
 let dgram
-try {
-  dgram = require('dgram')
-} catch(_) {
-  dgram = EMPTY // Browser does not support dgram
-}
+
+dgram = EMPTY // Browser does not support dgram
+
 
 export default class GpControlAPI {
   constructor({ ip, mac } = {}) {
